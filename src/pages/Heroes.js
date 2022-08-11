@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import HeroCard from "../components/HeroCard"
 
 
 const Heroes = () => {
@@ -20,7 +21,11 @@ const Heroes = () => {
       <h1>Heroes</h1>
       <section>
         {heroes.map(hero => {
-          return <Link to={`/heroes/${hero.slug}`} >{hero.name}</Link>
+          return(
+            <>
+              <HeroCard hero={hero}/>
+            </>
+          )
         })}
       </section>
       <section>
