@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-const AddHero = () => {
+const FormHero = (props) => {
   const [slug, setSlug] = useState('')
   const [name, setName] = useState('')
   const [powerInput, setPowerInput] = useState('')
@@ -9,6 +10,7 @@ const AddHero = () => {
   const [isAlive, setIsAlive] = useState(true)
   const [age, setAge] = useState(0)
   const [image, setImage] = useState('')
+  const navigate = useNavigate()
 
 
   const getSlug = e => {
@@ -53,8 +55,8 @@ const AddHero = () => {
       image : image
     }
 
-    const request = await fetch("http://localhost:5000/heroes", {
-      method: 'POST',
+    const request = await fetch(`http://localhost:5000/heroes/${props.fetchSlug}`, {
+      method: 'PUT',
       headers: {
         'Content-Type':'application/json'
       },
@@ -63,6 +65,11 @@ const AddHero = () => {
     const response = await request.json()
 
     resetForm()
+    if(request.status === 201){
+      navigate('/heroes')
+    }else{
+      alert(`${request.statusText}`)
+    }
     console.log('submitted')
   }
 
@@ -132,11 +139,11 @@ const AddHero = () => {
           </div>
         </div>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Add hero
+          {props.btnSubmitText}
         </button>
       </form>
     </>
   )
 }
 
-export default AddHero
+export default FormHero

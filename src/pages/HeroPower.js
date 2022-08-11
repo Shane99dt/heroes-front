@@ -6,7 +6,7 @@ const HeroPower = () => {
   const params= useParams()
   const {slug} = params
   const [hero, setHero] = useState([])
-  const [newPower, setNewPower] = useState('')
+  const [newPower, setNewPower] = useState([])
   const [edit, setEdit] = useState(false)
 
   useEffect(() => {
@@ -41,14 +41,31 @@ const HeroPower = () => {
     setNewPower(e.target.value)
   }
 
+  const changeNewpowerArr = () => {
+    return newPower.split(",")
+  }
+
+
   const handleAddPower = async (e) => {
     e.preventDefault()
 
     if(newPower){
+
+      // let power
+
+      // if(newPower.includes(',')){
+      //   power = {
+      //     newPower: newPower
+      //   }
+      // }else{
+      //   power = {
+      //     newPower: changeNewpowerArr()
+      //   }
+      // }
+
       const power = {
         newPower: newPower
       }
-
       const request = await fetch(`http://localhost:5000/heroes/${slug}/powers`, {
         method: 'PUT',
         headers: {
