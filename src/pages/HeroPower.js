@@ -6,7 +6,7 @@ const HeroPower = () => {
   const params= useParams()
   const {slug} = params
   const [hero, setHero] = useState([])
-  const [newPower, setNewPower] = useState([])
+  const [newPower, setNewPower] = useState("")
   const [edit, setEdit] = useState(false)
 
   useEffect(() => {
@@ -50,19 +50,6 @@ const HeroPower = () => {
     e.preventDefault()
 
     if(newPower){
-
-      // let power
-
-      // if(newPower.includes(',')){
-      //   power = {
-      //     newPower: newPower
-      //   }
-      // }else{
-      //   power = {
-      //     newPower: changeNewpowerArr()
-      //   }
-      // }
-
       const power = {
         newPower: newPower
       }
@@ -74,8 +61,13 @@ const HeroPower = () => {
         body: JSON.stringify(power)
       })
       const response = await request.json()
-      fetchHero()
-      setNewPower("")
+      if(request.status === 201){
+        fetchHero()
+        setNewPower("")
+      }else{
+        alert(`${request.status} ${request.statusText}`)
+      }
+
     }else{
       alert('Add a power')
     }
@@ -90,35 +82,39 @@ const HeroPower = () => {
     <>
       {!edit ? (
         <>
-          <p>{hero.name}'s Powers</p>
-          <ul>
-            {hero.power.map((pwr, id) => {
-              return <li key={id}>{pwr}</li>
-            })}
-          </ul>
-          <button onClick={handleEdit}>Edit power</button>
+          <div className="flex justify-center">
+            <div className="rounded-lg shadow-lg bg-white/80 max-w-sm p-5">
+              <h5 className="text-gray-900 text-xl font-medium mb-2 capitalize">{hero.name}'s Powers</h5>
+              <ul className="mt-4 list-disc pl-5">
+                {hero.power.map((pwr) => {
+                  return <li key={pwr} className='text-md font-medium mb-2 capitalize'>{pwr}</li>
+                })}
+              </ul>
+              <button className='py-1 px-3 border-2 rounded-md font-medium bg-gray-300 hover:bg-gray-400' onClick={handleEdit}>Edit power</button>
+            </div>
+          </div>
         </>
       ): (
         <>
-          <ul>
-            {hero.power.map((pwr, id) => {
-              return (
-                <>
-                  <li key={id}>
-                    <article>
-                    {pwr}
-                    <button className="p-2" onClick={()=>{deletePower(pwr)}}>Del</button>
-                    </article>
-                  </li>
-                </>
-              )
-            })}
-          </ul>
-          <form onSubmit={handleAddPower}>
-            <input onChange={changeNewpower} value={newPower} className="border-2"/>
-            <button type="submit">Add power</button>
-          </form>
-          <button onClick={handleValid}>Valid</button>
+          <div className="flex justify-center">
+            <div className="rounded-lg shadow-lg bg-white/80 max-w-sm p-5">
+              <ul className="mt-4 list-disc pl-5">
+                {hero.power.map((pwr) => {
+                  return (
+                    <li key={pwr} className='text-md font-medium mb-2 capitalize flex justify-between'>
+                      <p>{pwr}</p>
+                      <button className='py-1 px-3 border-2 rounded-md font-medium bg-gray-300 hover:bg-gray-400' onClick={()=>{deletePower(pwr)}}>Del</button>
+                    </li>
+                  )
+                })}
+              </ul>
+              <form onSubmit={handleAddPower}>
+                <input onChange={changeNewpower} value={newPower} className="border-2 rounded-md py-1"/>
+                <button type="submit" className='py-1 px-3 border-2 rounded-md font-medium bg-gray-300 hover:bg-gray-400'>Add power</button>
+              </form>
+              <button onClick={handleValid} className='mt-5 mx-auto py-1 px-3 border-2 rounded-md font-medium bg-gray-300 hover:bg-gray-400'>Valid</button>
+            </div>
+          </div>
         </>
       )}
     </>

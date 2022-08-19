@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import FormHero from "../components/FormHero"
+import HeroBigCard from "../components/HeroBigCard"
 
 const Hero = () => {
 
@@ -46,24 +47,13 @@ const Hero = () => {
     <>
       {!edit ? (
         <>
-          <p>Name: {hero.name}</p>
-          <p>Age: {hero.age}</p>
-          <p>Color: {hero.color}</p>
-          <Link to={`/heroes/${hero.slug}/powers`}>
-            <p>Powers</p>
-            <ul>
-              {hero.power.map(pwr => {
-                return <li>{pwr}</li>
-              })}
-            </ul>
-          </Link>
-          <button onClick={handleEdit}>Edit Hero</button>
-          <button onClick={handleDelete} className='mt-5'>Delete Hero</button>
+          <section className="md:mt-10">
+            <HeroBigCard hero={hero} handleEdit={handleEdit} handleDelete={handleDelete}/>
+          </section>
         </>
       ):(
         <>
-          <p>Edit mode</p>
-          <FormHero btnSubmitText={"Valid hero"} fetchSlug={hero.slug}/>
+          <FormHero btnSubmitText={"Valid hero"} fetchSlug={hero.slug} infoHero={hero} />
         </>
       )}
     </>

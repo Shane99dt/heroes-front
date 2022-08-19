@@ -18,18 +18,15 @@ const Heroes = () => {
 
   return(
     <>
-      <h1>Heroes</h1>
+      <h1 className="text-5xl font-sans font-medium text-slate-800 bg-slate-300/50 rounded-lg px-2 shadow-lg shadow-gray-400 text-shadow-lg drop-shadow-xl inline-block mt-3">Heroes</h1>
       <section>
         {heroes.map(hero => {
           return(
-            <>
+            <div key={hero.slug} className="p-2">
               <HeroCard hero={hero}/>
-            </>
+            </div>
           )
         })}
-      </section>
-      <section>
-        <Link to={'/heroes/add-hero'} >Add a new hero</Link>
       </section>
     </>
   )
