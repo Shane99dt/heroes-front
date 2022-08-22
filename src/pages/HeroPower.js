@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 const HeroPower = () => {
 
@@ -28,21 +28,13 @@ const HeroPower = () => {
 
   const deletePower = async (pwr) => {
     const request = await fetch(`http://localhost:5000/heroes/${slug}/power/${pwr}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type':'application/json'
-      }
+      method: 'DELETE'
     })
-    const response = await request.json()
     fetchHero()
   }
 
   const changeNewpower = e => {
     setNewPower(e.target.value)
-  }
-
-  const changeNewpowerArr = () => {
-    return newPower.split(",")
   }
 
 
@@ -60,7 +52,6 @@ const HeroPower = () => {
         },
         body: JSON.stringify(power)
       })
-      const response = await request.json()
       if(request.status === 201){
         fetchHero()
         setNewPower("")

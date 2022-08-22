@@ -11,7 +11,6 @@ const AddHero = () => {
   const navigate = useNavigate()
 
 
-
   const getName = e => {
     setName(e.target.value)
   }
@@ -57,8 +56,6 @@ const AddHero = () => {
       },
       body: JSON.stringify(hero)
     })
-    const response = await request.json()
-
     console.log('submitted')
     if(request.status === 201){
       navigate('/heroes')

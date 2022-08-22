@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import FormHero from "../components/FormHero"
 import HeroBigCard from "../components/HeroBigCard"
 
@@ -28,9 +28,8 @@ const Hero = () => {
         'Content-Type':'application/json'
       }
     })
-    const response = await request.json()
 
-    if(request.status === 200){
+    if(request.status === 204){
       navigate('/heroes')
     }
   }
