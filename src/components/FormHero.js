@@ -45,11 +45,7 @@ const FormHero = (props) => {
   }
 
   const updatePower = () => {
-    if(powerInput.includes(',')){
-      return powerInput.split(',')
-    }else{
-      return powerInput
-    }
+    return powerInput.split(',')
   }
 
   const handleSubmit = async (e) => {

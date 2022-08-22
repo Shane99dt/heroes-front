@@ -5,6 +5,9 @@ const HeroBigCard = (props) => {
   const { slug, name, image, age, color, isAlive, power } = props.hero
   const { handleDelete, handleEdit } = props
 
+  
+  console.log(power)
+
   return(
     <>
       <div className="flex justify-center">
