@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom"
 const FormHero = (props) => {
   const { infoHero } = props
   const [name, setName] = useState(infoHero.name)
-  const [powerInput, setPowerInput] = useState(infoHero.power)
-  const [power, setPower] = useState([])
+  const [powerInput, setPowerInput] = useState(infoHero.power.join(', '))
   const [color, setColor] = useState(infoHero.color)
   const [isAlive, setIsAlive] = useState(true)
   const [age, setAge] = useState(infoHero.age)

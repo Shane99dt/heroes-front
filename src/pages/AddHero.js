@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 const AddHero = () => {
   const [name, setName] = useState('')
   const [powerInput, setPowerInput] = useState('')
-  const [power, setPower] = useState([])
   const [color, setColor] = useState('')
   const [isAlive, setIsAlive] = useState(true)
   const [age, setAge] = useState(0)
