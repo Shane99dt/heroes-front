@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 
 const FormHero = (props) => {
   const { infoHero } = props
-  const [slug, setSlug] = useState(infoHero.slug)
   const [name, setName] = useState(infoHero.name)
   const [powerInput, setPowerInput] = useState(infoHero.power)
   const [power, setPower] = useState([])
@@ -14,11 +13,6 @@ const FormHero = (props) => {
   const navigate = useNavigate()
 
 
-  const getSlug = e => {
-    if(e.target.value){
-      setSlug(e.target.value)
-    }
-  }
   const getName = e => {
     if(e.target.value){
       setName(e.target.value)
@@ -62,7 +56,6 @@ const FormHero = (props) => {
     e.preventDefault()
 
     const hero = {
-      slug : slug,
       name : name,
       power : updatePower(),
       color : color,
@@ -96,11 +89,6 @@ const FormHero = (props) => {
         <form className="w-full mt-3 max-w-lg bg-slate-400/20 border-2 border-2 rounded-lg p-4 justify-center flex flex-col" onSubmit={handleSubmit}>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3">
-
-              <label className="block uppercase tracking-wide text-white font-bold font-semibold mb-2 shadow-gray-500 shadow-inner" htmlFor="grid-slug">
-                Slug
-              </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-slug" type="text" placeholder="Slug" value={slug} onChange={getSlug} required/>
               <label className="block uppercase tracking-wide text-white font-bold font-semibold mb-2 shadow-gray-500 shadow-inner" htmlFor="grid-name">
                 Name
               </label>
