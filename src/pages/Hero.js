@@ -30,7 +30,7 @@ const Hero = () => {
     })
 
     if(request.status === 204){
-      navigate('/heroes')
+      navigate('https://heroes-backend-dushen.herokuapp.com/heroes')
     }
   }
 
