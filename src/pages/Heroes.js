@@ -11,7 +11,7 @@ const Heroes = () => {
   }, [])
 
   const fetchHeroes = async () => {
-    const request = await fetch('http://localhost:5000/heroes')
+    const request = await fetch('https://heroes-backend-dushen.herokuapp.com/heroes')
     const response = await request.json()
     setHeroes(response)
   }

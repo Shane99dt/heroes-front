@@ -49,7 +49,7 @@ const AddHero = () => {
       image : image
     }
 
-    const request = await fetch("http://localhost:5000/heroes", {
+    const request = await fetch("https://heroes-backend-dushen.herokuapp.com/heroes", {
       method: 'POST',
       headers: {
         'Content-Type':'application/json'

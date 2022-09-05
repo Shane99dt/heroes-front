@@ -14,7 +14,7 @@ const HeroPower = () => {
   }, [])
 
   const fetchHero = async () => {
-    const request = await fetch(`http://localhost:5000/heroes/${slug}`)
+    const request = await fetch(`https://heroes-backend-dushen.herokuapp.com/heroes/${slug}`)
     const response = await request.json()
     setHero(response)
   }
@@ -27,7 +27,7 @@ const HeroPower = () => {
   }
 
   const deletePower = async (pwr) => {
-    const request = await fetch(`http://localhost:5000/heroes/${slug}/power/${pwr}`, {
+    const request = await fetch(`https://heroes-backend-dushen.herokuapp.com/heroes/${slug}/power/${pwr}`, {
       method: 'DELETE'
     })
     fetchHero()
@@ -45,7 +45,7 @@ const HeroPower = () => {
       const power = {
         newPower: newPower
       }
-      const request = await fetch(`http://localhost:5000/heroes/${slug}/powers`, {
+      const request = await fetch(`https://heroes-backend-dushen.herokuapp.com/heroes/${slug}/powers`, {
         method: 'PUT',
         headers: {
           'Content-Type':'application/json'
